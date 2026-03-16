@@ -15,7 +15,7 @@ pkg> add DACE
 ## Notes about the interface
 
 - The Julia interface is built using [CxxWrap.jl](https://github.com/JuliaInterop/CxxWrap.jl)
-- The C++ source for the interface is currently in [this fork](https://github.com/a-ev/dace/tree/julia-interface/interfaces/julia)
+- The C++ source for the interface is currently in [this fork](https://github.com/UoA-AstroGroup/dace/tree/julia-interface/interfaces/julia)
   of the DACE library
 - The C++ code gets built by [BinaryBuilder](https://docs.binarybuilder.org/stable/) and released into the Julia registry
   - the build recipe is located [here](https://github.com/JuliaPackaging/Yggdrasil/tree/master/D/DACE)
