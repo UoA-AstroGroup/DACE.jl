@@ -14,7 +14,7 @@ libcxxwrap_julia_jll = "3eaa8342-bff7-56a5-9981-c04077f7cee7"
 [compat]
 CxxWrap = "^0.17"
 DACE_jll = "^0.7.1"
-DiffEqBase = "^6"
+DiffEqBase = "^6, ^7"
 DocStringExtensions = "^0.9"
 SpecialFunctions = "^2"
 julia = "1.10, 1.11"
