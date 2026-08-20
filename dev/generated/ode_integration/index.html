@@ -16,11 +16,11 @@ end</code></pre><pre><code class="nohighlight hljs">kepler_ode! (generic functio
 sol = solve(prob, Vern9(), abstol=1e-12, reltol=1e-12)
 
 xf = sol.u[end]</code></pre><pre><code class="nohighlight hljs">6-element Vector{Float64}:
-  0.9999999999999938
- -4.520006942575025e-14
+  0.9999999999999959
+ -5.711220294863175e-14
   0.0
-  3.915961356874805e-14
-  0.9999999999999969
+  5.0377065620615403e-14
+  0.9999999999999957
   0.0</code></pre><p>Initialize DACE to compute second-order expansions</p><pre><code class="language-julia hljs">DACE.init(2,6)</code></pre><p>Define the initial conditions as a DA vector</p><pre><code class="language-julia hljs">dx_dace = [DA(i,1.0) for i in 1:6]
 x0_dace = x0 .+ dx_dace
 
@@ -54,7 +54,7 @@ xf_cons = DACE.cons.(xf_dace)</code></pre><pre><code class="nohighlight hljs">6-
   0.0
   4.7656323332034844e-14
   0.9999999999999954
-  0.0</code></pre><p>Verify the (nominal) final state</p><pre><code class="language-julia hljs">println(&quot;Max abs error on final state: &quot; * string(maximum(abs.(xf_cons - xf))))</code></pre><pre><code class="nohighlight hljs">Max abs error on final state: 9.575559051693411e-15
+  0.0</code></pre><p>Verify the (nominal) final state</p><pre><code class="language-julia hljs">println(&quot;Max abs error on final state: &quot; * string(maximum(abs.(xf_cons - xf))))</code></pre><pre><code class="nohighlight hljs">Max abs error on final state: 2.720742288580559e-15
 </code></pre><p>Extract the state transition matrix (STM)</p><pre><code class="language-julia hljs">stm_dace = DACE.jacobian(xf_dace)
 stm_cons = DACE.cons.(stm_dace)</code></pre><pre><code class="nohighlight hljs">6×6 Matrix{Float64}:
    1.0          -1.80144e-13  0.0          -2.34895e-13   -6.21281e-13   0.0
@@ -62,4 +62,4 @@ stm_cons = DACE.cons.(stm_dace)</code></pre><pre><code class="nohighlight hljs">
    0.0           0.0          1.0           0.0            0.0          -5.47756e-14
   18.8496       -5.36918e-13  0.0           1.0           18.8496        0.0
   -9.96092e-13   1.458e-13    0.0           9.83634e-14    1.0           0.0
-   0.0           0.0          4.76563e-14   0.0            0.0           1.0</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../polynomial_inversion/">« Polynomial inversion</a><a class="docs-footer-nextpage" href="../../api/">API »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.17.0 on <span class="colophon-date" title="Monday 16 March 2026 03:31">Monday 16 March 2026</span>. Using Julia version 1.10.11.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+   0.0           0.0          4.76563e-14   0.0            0.0           1.0</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../polynomial_inversion/">« Polynomial inversion</a><a class="docs-footer-nextpage" href="../../api/">API »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.17.0 on <span class="colophon-date" title="Thursday 20 August 2026 04:34">Thursday 20 August 2026</span>. Using Julia version 1.10.12.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
