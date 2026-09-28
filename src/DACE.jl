@@ -1,4 +1,13 @@
-module DACE
+baremodule DACE
+    using Base
+
+    # Julia 1.12+ gives ordinary modules an `eval` binding of type Core.EvalInto.
+    # CxxWrap needs a generic function to add DACE's polynomial-evaluation
+    # methods. Define the usual module helpers explicitly to preserve that API.
+    eval(x) = Core.eval(DACE, x)
+    include(path) = Base.include(DACE, path)
+    include(mapexpr::Function, path) = Base.include(mapexpr, DACE, path)
+
     using DACE_jll
     using CxxWrap
     using SpecialFunctions

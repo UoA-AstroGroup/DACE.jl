@@ -4,6 +4,10 @@ using Test
 include("utils.jl")
 
 @testset verbose = true "DACE tests" begin
+    @testset "Module helpers and polynomial evaluation" begin
+        include("module_helpers.jl")
+    end
+
     @testset verbose = true "Tutorials" begin
         include("tutorial_tests.jl")
     end
