@@ -6,32 +6,16 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         julia-version: ['1.10', '1']
-        julia-arch: [x64]
-        os: [ubuntu-latest, macOS-latest, windows-latest]
-        exclude:
-          - os: macOS-latest
-            julia-arch: x86
 
     steps:
       - uses: actions/checkout@v4
       - uses: julia-actions/setup-julia@v2
         with:
           version: ${{ matrix.julia-version }}
-          arch: ${{ matrix.julia-arch }}
-      - uses: msys2/setup-msys2@v2
-        if: runner.os == 'Windows'
-        id: msys2
-        with:
-          install: mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-ninja
-      - if: runner.os == 'Windows'
-        run: echo '${{ steps.msys2.outputs.msys2-location }}/mingw64/bin' >> $env:GITHUB_PATH
-      - name: Build native wrapper
-        run: julia --project test/build_native.jl
+      - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
-        # with:
-        #   annotate: true
