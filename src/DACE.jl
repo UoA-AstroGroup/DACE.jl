@@ -1,13 +1,4 @@
-baremodule DACE
-    using Base
-
-    # Julia 1.12+ gives ordinary modules an `eval` binding of type Core.EvalInto.
-    # CxxWrap needs a generic function to add DACE's polynomial-evaluation
-    # methods. Define the usual module helpers explicitly to preserve that API.
-    eval(x) = Core.eval(DACE, x)
-    include(path) = Base.include(DACE, path)
-    include(mapexpr::Function, path) = Base.include(mapexpr, DACE, path)
-
+module DACE
     using DACE_jll
     using CxxWrap
     using SpecialFunctions
@@ -150,13 +141,13 @@ baremodule DACE
     # compilation and evaluation of DA objects
     compile(v::AbstractVector{<:DA}) = compile(AlgebraicVector(v))
 
-    eval(cda::compiledDA, v::AbstractVector{<:DA}) = eval(cda, AlgebraicVector(v))
-    eval(a::AbstractVector{<:DA}, v::AbstractVector{<:DA}) = eval(AlgebraicVector(a), AlgebraicVector(v))
-    eval(a::AlgebraicVector{<:DA}, v::AbstractVector{<:DA}) = eval(a, AlgebraicVector(v))
+    @cxxdereference evaluate(cda::compiledDA, v::AbstractVector{<:DA}) = evaluate(cda, AlgebraicVector(v))
+    evaluate(a::AbstractVector{<:DA}, v::AbstractVector{<:DA}) = evaluate(AlgebraicVector(a), AlgebraicVector(v))
+    evaluate(a::AlgebraicVector{<:DA}, v::AbstractVector{<:DA}) = evaluate(a, AlgebraicVector(v))
 
-    eval(cda::compiledDA, v::AbstractVector{Float64}) = eval(cda, AlgebraicVector(v))
-    eval(a::AbstractVector{<:DA}, v::AbstractVector{Float64}) = eval(AlgebraicVector(a), AlgebraicVector(v))
-    eval(a::AlgebraicVector{<:DA}, v::AbstractVector{Float64}) = eval(a, AlgebraicVector(v))
+    @cxxdereference evaluate(cda::compiledDA, v::AbstractVector{Float64}) = evaluate(cda, AlgebraicVector(v))
+    evaluate(a::AbstractVector{<:DA}, v::AbstractVector{Float64}) = evaluate(AlgebraicVector(a), AlgebraicVector(v))
+    evaluate(a::AlgebraicVector{<:DA}, v::AbstractVector{Float64}) = evaluate(a, AlgebraicVector(v))
 
     # ------- #
     # exports #

@@ -4,3 +4,5 @@ docs/build/
 docs/src/generated/
 .vscode
 *.pdf
+.native/
+LocalPreferences.toml

@@ -40,6 +40,17 @@ sin(1.0) = 0.8414709848078965
 
 ## Running the tests
 
+Polynomial evaluation now uses `DACE.evaluate(p, args)` instead of
+`DACE.eval(p, args)`; `evalScalar` is unchanged. Until DACE_jll includes this
+renamed binding, build the native wrapper with CMake, Ninja, and a C++ compiler:
+
+```sh
+julia --project test/build_native.jl
+```
+
+This selects the rebuilt library through a project-local preference. CI uses
+the same build on Julia 1.10 and the latest stable Julia.
+
 More examples of how to use *DACE.jl* can be found in the tests, for example [validation_2.jl](test/validation_2.jl).
 
 You can run the validation tests using the Julia package manager.

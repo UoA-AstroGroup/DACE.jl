@@ -21,9 +21,11 @@ jobs:
       - name: Install dependencies
         run: |
           import Pkg
-          Pkg.develop("DACE")
+          Pkg.develop(path=pwd())
           Pkg.instantiate()
         shell: julia --color=yes --project=docs/ {0}
+      - name: Build native wrapper
+        run: julia --project=docs test/build_native.jl
       - name: Build and deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # If authenticating with GitHub Actions token

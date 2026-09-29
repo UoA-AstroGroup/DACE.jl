@@ -4,8 +4,22 @@ using Test
 include("utils.jl")
 
 @testset verbose = true "DACE tests" begin
-    @testset "Module helpers and polynomial evaluation" begin
-        include("module_helpers.jl")
+    @testset "Polynomial evaluation" begin
+        DACE.init(3, 2)
+        x, y = DA(1, 1.0), DA(2, 1.0)
+        p = 1.0 + x + 2.0 * y + x * y
+        @test DACE.eval(:(1 + 2)) == 3
+        @test DACE.evaluate(p, AlgebraicVector([0.2, -0.3])) ≈ 0.54
+        q = DACE.evaluate(p, AlgebraicVector([y, x]))
+        @test DACE.evaluate(q, AlgebraicVector([0.2, -0.3])) ≈ 1.04
+        for f in ([p, x + y], AlgebraicVector([p, x + y]), DACE.compile([p, x + y]))
+            @test collect(DACE.evaluate(f, [0.2, -0.3])) ≈ [0.54, -0.1]
+            g = DACE.evaluate(f, [y, x])
+            @test collect(DACE.evaluate(g, [0.2, -0.3])) ≈ [1.04, -0.1]
+        end
+        result = AlgebraicVector(zeros(2))
+        DACE.evaluate(DACE.compile([p, x + y]), AlgebraicVector([0.2, -0.3]), result)
+        @test collect(result) ≈ [0.54, -0.1]
     end
 
     @testset verbose = true "Tutorials" begin
