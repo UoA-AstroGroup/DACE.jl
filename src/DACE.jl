@@ -1,4 +1,11 @@
-module DACE
+baremodule DACE
+    using Base
+
+    # Keep eval extensible for CxxWrap's polynomial methods on Julia 1.12+.
+    eval(x) = Core.eval(DACE, x)
+    include(path) = Base.include(DACE, path)
+    include(mapexpr::Function, path) = Base.include(mapexpr, DACE, path)
+
     using DACE_jll
     using CxxWrap
     using SpecialFunctions
