@@ -35,8 +35,7 @@ example_pages = [
 
 tutorial_pages = [
     "Setting up your development environment" => "tutorials/setting-up-your-development-environment.md",
-    "Modifying the C++ side of the interface" => "tutorials/modifying-the-cxx-side-of-the-interface.md",
-    "Making a new release of DACE_jll.jl" => "tutorials/making-a-new-release-of-dace_jll.md",
+    "Direct bindings" => "tutorials/direct-bindings.md",
     "Making a new release of DACE.jl" => "tutorials/making-a-new-release-of-dace.md",
 ]
 
@@ -55,12 +54,13 @@ format = Documenter.HTML(
 )
 
 makedocs(
+    root = @__DIR__,
     sitename = "DACE.jl",
     format = format,
     pages = pages,
 #    modules = [DACE],
 )
 
-deploydocs(
-    repo = "github.com/UoA-AstroGroup/DACE.jl.git",
-)
+if get(ENV, "CI", "false") == "true"
+    deploydocs(repo = "github.com/UoA-AstroGroup/DACE.jl.git")
+end

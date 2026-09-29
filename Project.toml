@@ -4,20 +4,20 @@ authors = ["Chris Scott <chris.scott@nesi.org.nz>"]
 version = "0.2.0"
 
 [deps]
-CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
-DACE_jll = "40de70a5-cf80-53d9-bda4-3aa67fea2f4f"
-DiffEqBase = "2b5f629d-d688-5b77-993f-72d75c75574e"
-DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
+Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
-libcxxwrap_julia_jll = "3eaa8342-bff7-56a5-9981-c04077f7cee7"
+
+[weakdeps]
+DiffEqBase = "2b5f629d-d688-5b77-993f-72d75c75574e"
+
+[extensions]
+DACEDiffEqBaseExt = "DiffEqBase"
 
 [compat]
-CxxWrap = "^0.17"
-DACE_jll = "^0.7.1"
 DiffEqBase = "^6, ^7"
-DocStringExtensions = "^0.9"
 SpecialFunctions = "^2"
-julia = "1.10, 1.11"
+julia = "1.10"
 
 [extras]
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
@@ -25,7 +25,8 @@ DifferentiableEigen = "73a20539-4e65-4dcb-a56d-dc20f210a01b"
 ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
 GenericLinearAlgebra = "14197337-ba66-59df-a3e3-ca00e7dcff7a"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["DelimitedFiles", "DifferentiableEigen", "ForwardDiff", "GenericLinearAlgebra", "LinearAlgebra", "Test"]
+test = ["DelimitedFiles", "DifferentiableEigen", "ForwardDiff", "GenericLinearAlgebra", "LinearAlgebra", "Random", "Test"]

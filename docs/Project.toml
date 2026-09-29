@@ -1,15 +1,11 @@
 [deps]
-CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
 DACE = "f4439622-e757-4457-9ca0-f65a61d23f40"
-DACE_jll = "40de70a5-cf80-53d9-bda4-3aa67fea2f4f"
 DiffEqBase = "2b5f629d-d688-5b77-993f-72d75c75574e"
-DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
 OrdinaryDiffEq = "1dea7af3-3e70-54e6-95c3-0bf5283fa5ed"
 SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 
 [compat]
-DiffEqBase = "^6"
-DocStringExtensions = "^0.9"
+DiffEqBase = "6, 7"
 SpecialFunctions = "^2"

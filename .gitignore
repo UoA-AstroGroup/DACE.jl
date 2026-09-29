@@ -4,3 +4,7 @@ docs/build/
 docs/src/generated/
 .vscode
 *.pdf
+deps/build*/
+deps/source-upstream/
+deps/usr/
+results/

@@ -36,7 +36,7 @@ import ForwardDiff: Dual
     Ffd = LinearAlgebra.eigen(Hermitian(Afd))
 
     λda, Vda = Fda.values, Fda.vectors          # GenericLinearAlgebra + DACE
-    λcc, Vcc = DACE.eigh(Acc)                   # Eigen3 + DACE
+    λcc, Vcc = DACE.eigh(Acc)                   # Taylor eigenpairs in Julia
     λfd, Vfd = Ffd.values, Ffd.vectors          # GenericLinearAlgebra + ForwardDiff
     λde, Vde = DifferentiableEigen.eigen(Afd)   # DifferentiableEigen + ForwardDiff
     λde, Vde = λde[1:2:end], Vde[1:2:end]

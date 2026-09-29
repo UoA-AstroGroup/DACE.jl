@@ -65,6 +65,7 @@ xf_cons = DACE.cons.(xf_dace)
 # Verify the (nominal) final state
 
 println("Max abs error on final state: " * string(maximum(abs.(xf_cons - xf))))
+@assert maximum(abs.(xf_cons - xf)) < 1e-9
 
 # Extract the state transition matrix (STM)
 

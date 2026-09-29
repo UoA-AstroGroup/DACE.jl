@@ -131,7 +131,7 @@ _ = lagrange_propagator(x0_da_2nd, Δt, μ)
 @time x1_da_2nd = lagrange_propagator(x0_da_2nd, Δt, μ)
 
 x1_cp_2nd = DACE.compile(x1_da_2nd)
-x1_ev_2nd = stack([DACE.eval(x1_cp_2nd, u0_mc[i,:]/zs) for i in 1:ns], dims=1)
+x1_ev_2nd = stack([DACE.evaluate(x1_cp_2nd, u0_mc[i,:]/zs) for i in 1:ns], dims=1)
 
 # DAMC simulation (order 4)
 DACE.pushTO(4)
@@ -139,7 +139,7 @@ x0_da_4th = x0 .+ zs.*sqrt.(var0).*[DA(i,1) for i in eachindex(x0)]
 @time x1_da_4th = lagrange_propagator(x0_da_4th, Δt, μ)
 
 x1_cp_4th = DACE.compile(x1_da_4th)
-x1_ev_4th = stack([DACE.eval(x1_cp_4th, u0_mc[i,:]/zs) for i in 1:ns], dims=1)
+x1_ev_4th = stack([DACE.evaluate(x1_cp_4th, u0_mc[i,:]/zs) for i in 1:ns], dims=1)
 
 # DAMC simulation (order 8)
 DACE.pushTO(8)
@@ -147,7 +147,7 @@ x0_da_8th = x0 .+ zs.*sqrt.(var0).*[DA(i,1) for i in eachindex(x0)]
 @time x1_da_8th = lagrange_propagator(x0_da_8th, Δt, μ)
 
 x1_cp_8th = DACE.compile(x1_da_8th)
-x1_ev_8th = stack([DACE.eval(x1_cp_8th, u0_mc[i,:]/zs) for i in 1:ns], dims=1)
+x1_ev_8th = stack([DACE.evaluate(x1_cp_8th, u0_mc[i,:]/zs) for i in 1:ns], dims=1)
 
 # plot results
 fig = Figure()

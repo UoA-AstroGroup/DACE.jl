@@ -36,4 +36,6 @@ include("utils.jl")
     @testset verbose = true "Factories" begin
         include("factory.jl")
     end
+
+    include("direct_bindings.jl")
 end
